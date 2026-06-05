@@ -152,16 +152,26 @@ export default function OrderPage() {
 
   const paymentButtons = (
     <div className="grid grid-cols-3 gap-1.5">
-      {[
-        { value: 'cashapp', label: '$Breannagrigsby1' },
-        { value: 'venmo', label: '@Kylee-Davis-42' },
-        { value: 'in_person', label: 'Pay in Person' },
-      ].map(opt => (
-        <button key={opt.value} type="button"
-          onClick={() => setForm(prev => ({ ...prev, payment_method: opt.value }))}
-          className={`py-2 rounded-xl text-xs font-semibold border-2 transition-colors ${form.payment_method === opt.value ? 'bg-amber-800 text-white border-amber-800' : 'bg-white text-gray-700 border-gray-200'}`}
-        >{opt.label}</button>
-      ))}
+      {/* CashApp */}
+      <button type="button" onClick={() => setForm(prev => ({ ...prev, payment_method: 'cashapp' }))}
+        className={`py-2.5 rounded-xl border-2 transition-all flex items-center justify-center ${form.payment_method === 'cashapp' ? 'border-black scale-95' : 'border-gray-200'}`}
+        style={{ backgroundColor: '#000' }}>
+        <span className="flex items-center gap-1">
+          <span className="w-4 h-4 rounded-sm flex items-center justify-center text-xs font-black" style={{ backgroundColor: '#00D632', color: '#000' }}>$</span>
+          <span className="text-white text-xs font-semibold">Cash App</span>
+        </span>
+      </button>
+      {/* Venmo */}
+      <button type="button" onClick={() => setForm(prev => ({ ...prev, payment_method: 'venmo' }))}
+        className={`py-2.5 rounded-xl border-2 transition-all flex items-center justify-center ${form.payment_method === 'venmo' ? 'border-blue-400 scale-95' : 'border-gray-200'}`}
+        style={{ backgroundColor: '#008CFF' }}>
+        <span className="text-white text-xs font-black italic">venmo</span>
+      </button>
+      {/* In Person */}
+      <button type="button" onClick={() => setForm(prev => ({ ...prev, payment_method: 'in_person' }))}
+        className={`py-2.5 rounded-xl border-2 transition-all text-xs font-semibold ${form.payment_method === 'in_person' ? 'bg-amber-800 text-white border-amber-800' : 'bg-white text-gray-700 border-gray-200'}`}>
+        In Person
+      </button>
     </div>
   )
 
@@ -411,17 +421,23 @@ export default function OrderPage() {
           <div className="bg-white rounded-2xl shadow-sm p-4">
             <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Payment method</label>
             <div className="grid grid-cols-3 gap-2">
-              {[
-                { value: 'cashapp', label: '$Breannagrigsby1' },
-                { value: 'venmo', label: '@Kylee-Davis-42' },
-                { value: 'in_person', label: 'Pay in Person' },
-              ].map(opt => (
-                <button key={opt.value} type="button"
-                  onClick={() => setForm(prev => ({ ...prev, payment_method: opt.value }))}
-                  className={`py-3 rounded-xl font-semibold text-xs border-2 transition-colors ${form.payment_method === opt.value ? 'bg-amber-800 text-white border-amber-800' : 'bg-white text-gray-700 border-gray-200'}`}>
-                  {opt.label}
-                </button>
-              ))}
+              <button type="button" onClick={() => setForm(prev => ({ ...prev, payment_method: 'cashapp' }))}
+                className={`py-3 rounded-xl border-2 transition-all flex items-center justify-center ${form.payment_method === 'cashapp' ? 'border-black scale-95' : 'border-gray-200'}`}
+                style={{ backgroundColor: '#000' }}>
+                <span className="flex items-center gap-1">
+                  <span className="w-4 h-4 rounded-sm flex items-center justify-center text-xs font-black" style={{ backgroundColor: '#00D632', color: '#000' }}>$</span>
+                  <span className="text-white text-xs font-semibold">Cash App</span>
+                </span>
+              </button>
+              <button type="button" onClick={() => setForm(prev => ({ ...prev, payment_method: 'venmo' }))}
+                className={`py-3 rounded-xl border-2 transition-all flex items-center justify-center ${form.payment_method === 'venmo' ? 'border-blue-400 scale-95' : 'border-gray-200'}`}
+                style={{ backgroundColor: '#008CFF' }}>
+                <span className="text-white text-xs font-black italic">venmo</span>
+              </button>
+              <button type="button" onClick={() => setForm(prev => ({ ...prev, payment_method: 'in_person' }))}
+                className={`py-3 rounded-xl border-2 transition-all text-xs font-semibold ${form.payment_method === 'in_person' ? 'bg-amber-800 text-white border-amber-800' : 'bg-white text-gray-700 border-gray-200'}`}>
+                In Person
+              </button>
             </div>
           </div>
           <div className="bg-white rounded-2xl shadow-sm p-4 space-y-2">
