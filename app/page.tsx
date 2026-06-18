@@ -194,8 +194,8 @@ export default function OrderPage() {
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {menu.map((item, index) => (
-            <div key={item.id} className="rounded-2xl shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 flex flex-col" style={{ backgroundColor: '#f5f0e8' }}>
-              <div className="relative h-44 w-full" style={{ backgroundColor: '#f5f0e8' }}>
+            <div key={item.id} className="bg-white rounded-2xl overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 flex flex-col" style={{ border: '1px solid rgba(0,0,0,0.08)' }}>
+              <div className="relative h-44 w-full bg-white">
                 <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-3" sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, 50vw" />
               </div>
               <div className="p-4 flex flex-col flex-1 bg-white">
@@ -221,7 +221,7 @@ export default function OrderPage() {
 
   // ── DESKTOP ───────────────────────────────────────────────────────────────
   const desktop = (
-    <div className="hidden lg:flex min-h-screen" style={{ backgroundColor: '#f7f3ee' }}>
+    <div className="hidden lg:flex min-h-screen" style={{ backgroundColor: '#ffffff' }}>
       {/* Main content */}
       <div className="flex-1 overflow-y-auto flex flex-col">
         {/* Top bar */}
@@ -261,8 +261,8 @@ export default function OrderPage() {
           </div>
           <div className="grid grid-cols-2 xl:grid-cols-4 gap-5">
             {menu.map((item, index) => (
-              <div key={item.id} className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-                <div className="relative h-44 w-full" style={{ backgroundColor: '#f5f0e8' }}>
+              <div key={item.id} className="bg-white rounded-2xl overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200" style={{ border: '1px solid rgba(0,0,0,0.08)' }}>
+                <div className="relative h-44 w-full bg-white">
                   <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-4" sizes="(min-width:1280px) 25vw, 50vw" />
                 </div>
                 <div className="p-4">
@@ -350,7 +350,7 @@ export default function OrderPage() {
   if (mobileView === 'menu') return (
     <>
       {desktop}
-      <main className="min-h-screen lg:hidden pb-24" style={{ backgroundColor: '#f7f3ee' }}>
+      <main className="min-h-screen lg:hidden pb-24" style={{ backgroundColor: '#ffffff' }}>
         {/* Top bar */}
         <div className="flex items-center justify-between px-5 pt-12 pb-2">
           <button className="w-10 h-10 flex items-center justify-center">
@@ -395,8 +395,8 @@ export default function OrderPage() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             {menu.map((item, index) => (
-              <div key={item.id} className="bg-white rounded-2xl shadow-sm overflow-hidden">
-                <div className="relative h-36 w-full" style={{ backgroundColor: '#f5f0e8' }}>
+              <div key={item.id} className="bg-white rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(0,0,0,0.08)' }}>
+                <div className="relative h-36 w-full bg-white">
                   <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-3" sizes="50vw" />
                 </div>
                 <div className="p-3">
@@ -448,7 +448,7 @@ export default function OrderPage() {
   if (mobileView === 'cart') return (
     <>
       {desktop}
-      <main className="min-h-screen lg:hidden" style={{ backgroundColor: '#f7f3ee' }}>
+      <main className="min-h-screen lg:hidden" style={{ backgroundColor: '#ffffff' }}>
         <div className="bg-white px-5 pt-12 pb-4 flex items-center gap-3 shadow-sm sticky top-0 z-10">
           <button onClick={() => setMobileView('menu')} className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100">
             <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
@@ -485,7 +485,7 @@ export default function OrderPage() {
   return (
     <>
       {desktop}
-      <main className="min-h-screen lg:hidden" style={{ backgroundColor: '#f7f3ee' }}>
+      <main className="min-h-screen lg:hidden" style={{ backgroundColor: '#ffffff' }}>
         <div className="bg-white px-5 pt-12 pb-4 flex items-center gap-3 shadow-sm sticky top-0 z-10">
           <button onClick={() => setMobileView('cart')} className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100">
             <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
