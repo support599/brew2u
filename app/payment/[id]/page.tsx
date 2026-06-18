@@ -121,6 +121,12 @@ export default function PaymentPage() {
                   </div>
                 </div>
                 <p className="text-gray-500 text-xs text-center">Include your name <span className="font-bold text-gray-700">{order.customer_name}</span> in the memo</p>
+                <a href={`https://cash.app/${cashHandle}`} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm"
+                  style={{ backgroundColor: '#00D632', color: '#000' }}>
+                  <span className="w-5 h-5 rounded-sm flex items-center justify-center text-sm font-black" style={{ backgroundColor: '#000', color: '#00D632' }}>$</span>
+                  Open Cash App
+                </a>
               </div>
             )}
 
@@ -132,6 +138,12 @@ export default function PaymentPage() {
                   <p className="text-blue-100 text-xs mt-1">Venmo</p>
                 </div>
                 <p className="text-gray-500 text-xs text-center">Include your name <span className="font-bold text-gray-700">{order.customer_name}</span> in the memo</p>
+                <a href={`https://venmo.com/${venmoHandle}`} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm text-white"
+                  style={{ backgroundColor: '#008CFF' }}>
+                  <span className="text-white font-black italic text-sm">venmo</span>
+                  — Open Venmo
+                </a>
               </div>
             )}
 
