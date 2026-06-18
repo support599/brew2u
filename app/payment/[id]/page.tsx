@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
+import Image from 'next/image'
 
 interface OrderItem { item_name: string; qty: number; price: number }
 interface Order {
@@ -55,9 +56,11 @@ export default function PaymentPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Header */}
-      <div className="text-white text-center py-8 px-4" style={{ backgroundColor: '#1a0f07' }}>
-        <h1 className="text-3xl font-black tracking-tight">brew2u</h1>
-        <p className="text-sm mt-1" style={{ color: '#c8a97e' }}>Order #{order.id}</p>
+      <div className="text-center py-6 px-4" style={{ backgroundColor: '#f5f0e8' }}>
+        <div className="relative w-28 h-28 mx-auto">
+          <Image src="/logo.png" alt="brew2u" fill className="object-contain" sizes="112px" priority />
+        </div>
+        <p className="text-sm font-semibold mt-1" style={{ color: '#7c4f2a' }}>Order #{order.id}</p>
       </div>
 
       <div className="max-w-lg mx-auto px-4 py-6 space-y-4">
