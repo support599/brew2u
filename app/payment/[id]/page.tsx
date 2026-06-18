@@ -57,7 +57,7 @@ export default function PaymentPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Header */}
-      <div className="text-center py-6 px-4" style={{ backgroundColor: '#f5f0e8' }}>
+      <div className="text-center py-6 px-4 bg-white">
         <div className="relative w-28 h-28 mx-auto">
           <Image src="/logo.png" alt="brew2u" fill className="object-contain" sizes="112px" priority />
         </div>
@@ -70,7 +70,7 @@ export default function PaymentPage() {
         <div className="flex justify-center">
           {status === 'pending' && (
             <span className="px-5 py-2 rounded-full text-sm font-semibold" style={{ backgroundColor: '#f5f0e8', color: '#7c4f2a' }}>
-              Awaiting Confirmation
+              Thank You for Your Purchase!
             </span>
           )}
           {status === 'confirmed' && (
@@ -92,6 +92,7 @@ export default function PaymentPage() {
             <p className="font-bold text-gray-900 text-lg">Your order is confirmed!</p>
             <p className="text-gray-500 text-sm mt-1">Delivery on {formatDate(order.delivery_date)}</p>
             <p className="text-gray-400 text-xs mt-1">Check your email for details.</p>
+            <p className="text-xs font-semibold mt-2" style={{ color: '#7c4f2a' }}>We&apos;ll message you shortly. ☕</p>
           </div>
         )}
 
@@ -151,8 +152,9 @@ export default function PaymentPage() {
               <p className="text-gray-600 text-sm">No payment needed now — pay when your order arrives.</p>
             )}
 
-            <div className="mt-4 pt-4 border-t border-gray-100 text-gray-400 text-xs text-center">
-              Once we receive your payment, we&apos;ll confirm your order and send a confirmation email.
+            <div className="mt-4 pt-4 border-t border-gray-100 text-gray-400 text-xs text-center space-y-1">
+              <p>Once we receive your payment, we&apos;ll confirm your order and send a confirmation email.</p>
+              <p className="font-semibold" style={{ color: '#7c4f2a' }}>We&apos;ll message you shortly. ☕</p>
             </div>
           </div>
         )}
@@ -185,7 +187,7 @@ export default function PaymentPage() {
         </div>
 
         <p className="text-center text-gray-400 text-sm pb-6">
-          Questions? Text <a href="tel:9033789795" className="font-bold text-gray-600">903-378-9795</a>
+          Questions? <a href="tel:9033789795" className="font-bold text-gray-600">Call or Text 903-378-9795</a>
         </p>
       </div>
     </main>
