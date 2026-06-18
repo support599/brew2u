@@ -240,16 +240,16 @@ export default function OrderPage() {
         </div>
 
         {/* Promo banner */}
-        <div className="mx-10 mb-8 rounded-3xl overflow-hidden relative h-44" style={{ backgroundColor: '#5c3d1e' }}>
-          <div className="absolute inset-0 z-10 flex flex-col justify-center pl-10 pr-80">
+        <div className="mx-10 mb-8 rounded-3xl overflow-hidden relative h-44" style={{ backgroundColor: '#1a0f07' }}>
+          <div className="absolute inset-0 z-10 flex flex-col justify-center pl-10 pr-72">
             <p className="text-white font-bold text-2xl leading-snug">Fresh Cold Brew<br/>Delivered to You</p>
             <p className="text-amber-200 text-sm mt-1">Order today, delivered in 2 days</p>
             <button className="mt-3 bg-white text-amber-900 text-sm font-bold px-6 py-2 rounded-full w-fit hover:bg-amber-50 transition-colors">
               order now
             </button>
           </div>
-          <div className="absolute right-0 top-0 h-full w-80 z-0">
-            <Image src="/banner.png" alt="Brew2u" fill className="object-cover object-left" sizes="320px" />
+          <div className="absolute right-0 top-0 h-full w-72 z-0">
+            <Image src="/splash.png" alt="Brew2u" fill className="object-contain object-right" sizes="288px" />
           </div>
         </div>
 
@@ -365,20 +365,19 @@ export default function OrderPage() {
 
         {/* Heading */}
         <div className="px-5 mb-5 mt-1">
-          <h1 className="text-2xl font-bold text-gray-900 leading-tight">Fresh Cold Brew, Delivered.</h1>
-          <p className="text-gray-500 text-base mt-1">Order Your Favorite Bottle In Seconds.</p>
+          <h1 className="text-2xl font-bold text-gray-900 leading-snug">FRESHLY BOTTLED.<br/>PERFECTLY BREWED.<br/>DELIVERED TO YOU.</h1>
         </div>
 
         {/* Promo banner */}
-        <div className="mx-5 mb-6 rounded-3xl overflow-hidden relative h-36" style={{ backgroundColor: '#5c3d1e' }}>
-          <div className="absolute inset-0 z-10 flex flex-col justify-center pl-5 pr-40">
+        <div className="mx-5 mb-6 rounded-3xl overflow-hidden relative h-36" style={{ backgroundColor: '#1a0f07' }}>
+          <div className="absolute inset-0 z-10 flex flex-col justify-center pl-5 pr-36">
             <p className="text-white font-bold text-lg leading-snug">Fresh Cold Brew<br/>Delivered to You</p>
             <button onClick={() => {}} className="mt-2 bg-white text-amber-900 text-xs font-bold px-4 py-1.5 rounded-full w-fit">
               order now
             </button>
           </div>
-          <div className="absolute right-0 top-0 h-full w-44 z-0">
-            <Image src="/banner.png" alt="Brew2u" fill className="object-cover object-left" sizes="176px" />
+          <div className="absolute right-0 top-0 h-full w-40 z-0">
+            <Image src="/splash.png" alt="Brew2u" fill className="object-contain object-right" sizes="160px" />
           </div>
         </div>
 
