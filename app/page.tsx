@@ -391,8 +391,11 @@ export default function OrderPage() {
           <div className="grid grid-cols-2 gap-4">
             {menu.map((item, index) => (
               <div key={item.id} className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(0,0,0,0.08)', backgroundColor: '#fff' }}>
-                <div className="relative h-36 w-full" style={{ backgroundColor: '#f5f5f0' }}>
-                  <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-8" sizes="50vw" />
+                <div className="p-3">
+                  <div className="relative h-32 w-full rounded-xl" style={{ backgroundColor: '#f5f5f0' }}>
+                    <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-4" sizes="50vw" />
+                  </div>
+                </div>
                 </div>
                 <div className="p-3">
                   <p className="font-bold text-gray-900 text-sm leading-tight">{item.name}</p>
