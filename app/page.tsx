@@ -370,15 +370,15 @@ export default function OrderPage() {
         </div>
 
         {/* Promo banner */}
-        <div className="mx-5 mb-6 rounded-3xl overflow-hidden relative h-36" style={{ backgroundColor: '#1a0f07' }}>
-          <div className="absolute inset-0 z-10 flex flex-col justify-center pl-5 pr-36">
+        <div className="mx-5 mb-6 rounded-3xl relative h-36" style={{ backgroundColor: '#1a0f07', overflow: 'visible' }}>
+          <div className="absolute inset-0 z-10 flex flex-col justify-center pl-5 pr-36 rounded-3xl overflow-hidden">
             <p className="text-white font-bold text-lg leading-snug">Cold Brew,<br/>One Tap Away</p>
             <button onClick={() => {}} className="mt-2 bg-white text-amber-900 text-xs font-bold px-4 py-1.5 rounded-full w-fit">
               order now
             </button>
           </div>
-          <div className="absolute right-0 top-0 h-full w-40 z-0" style={{ transform: 'rotate(20deg) translateX(-48px) scale(1.3)' }}>
-            <Image src="/splash.png" alt="Brew2u" fill className="object-contain object-right" sizes="160px" />
+          <div className="absolute z-20" style={{ right: '-4px', top: '-24px', width: '160px', height: '200px', transform: 'rotate(15deg) translateX(-20px)' }}>
+            <Image src="/splash.png" alt="Brew2u" fill className="object-contain" sizes="160px" />
           </div>
         </div>
 
@@ -413,8 +413,8 @@ export default function OrderPage() {
         </div>
 
         {/* Bottom nav */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 pt-3 pb-6 flex items-center justify-center gap-4 z-20 px-6">
-          <button className="flex flex-col items-center gap-1 transition-all duration-300">
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 pt-3 pb-6 flex items-center justify-center gap-6 z-20">
+          <button className="flex flex-col items-center gap-1">
             <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#7c4f2a' }}>
               <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
@@ -423,16 +423,13 @@ export default function OrderPage() {
             <span className="text-xs font-semibold" style={{ color: '#7c4f2a' }}>Home</span>
           </button>
           {cartCount > 0 && (
-            <button onClick={() => setMobileView('cart')}
-              className="flex items-center gap-2 px-5 py-3 rounded-2xl text-white font-bold text-sm shadow-lg transition-all duration-300"
-              style={{ backgroundColor: '#1a0f07' }}>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-              Go to Cart
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-              </svg>
+            <button onClick={() => setMobileView('cart')} className="flex flex-col items-center gap-1">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#1a0f07' }}>
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <span className="text-xs font-semibold" style={{ color: '#1a0f07' }}>Go to Cart</span>
             </button>
           )}
         </div>
