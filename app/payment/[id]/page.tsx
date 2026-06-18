@@ -18,7 +18,8 @@ interface Order {
 
 function formatDate(d: string) {
   if (!d) return ''
-  const date = new Date(d.includes('T') ? d : d + 'T12:00:00')
+  const datePart = d.slice(0, 10) // always use YYYY-MM-DD only
+  const date = new Date(datePart + 'T12:00:00')
   if (isNaN(date.getTime())) return ''
   return date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })
 }
