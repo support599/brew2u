@@ -377,7 +377,7 @@ export default function OrderPage() {
               order now
             </button>
           </div>
-          <div className="absolute right-0 top-0 h-full w-40 z-0" style={{ transform: 'rotate(20deg) translateX(8px)' }}>
+          <div className="absolute right-0 top-0 h-full w-40 z-0" style={{ transform: 'rotate(20deg) translateX(-12px) scale(1.3)' }}>
             <Image src="/splash.png" alt="Brew2u" fill className="object-contain object-right" sizes="160px" />
           </div>
         </div>
