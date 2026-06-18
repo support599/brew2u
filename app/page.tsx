@@ -64,6 +64,7 @@ export default function OrderPage() {
   const [mobileView, setMobileView] = useState<MobileView>('menu')
   const [form, setForm] = useState({
     customer_name: '', customer_email: '', phone: '', address: '',
+    city: '', state: '', zip: '',
     delivery_date: '', payment_method: 'cashapp',
   })
   const [submitting, setSubmitting] = useState(false)
@@ -110,6 +111,7 @@ export default function OrderPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...form,
+          address: `${form.address}, ${form.city}, ${form.state} ${form.zip}`,
           items: cart.map(c => ({ item_name: c.name, qty: c.qty, price: parseFloat(String(c.price)) })),
         }),
       })
@@ -520,12 +522,12 @@ export default function OrderPage() {
           <h1 className="text-lg font-bold text-gray-900">Your Details</h1>
         </div>
         <form onSubmit={handleSubmit} className="px-4 py-4 pb-40 space-y-4">
-          <div className="bg-white rounded-2xl shadow-sm p-4 space-y-3">
+          <div className="rounded-2xl p-4 space-y-3" style={{ border: '1px solid rgba(0,0,0,0.08)' }}>
             {[
-              { label: 'Full name', key: 'customer_name', type: 'text', placeholder: 'Jane Smith', required: true },
-              { label: 'Email (for confirmation)', key: 'customer_email', type: 'email', placeholder: 'jane@example.com', required: false },
+              { label: 'Full Name', key: 'customer_name', type: 'text', placeholder: 'Jane Smith', required: true },
+              { label: 'Email', key: 'customer_email', type: 'email', placeholder: 'jane@example.com', required: false },
               { label: 'Phone', key: 'phone', type: 'tel', placeholder: '(555) 000-0000', required: true },
-              { label: 'Delivery address', key: 'address', type: 'text', placeholder: '123 Main St, City, TX', required: true },
+              { label: 'Street Address', key: 'address', type: 'text', placeholder: '123 Main St', required: true },
             ].map(f => (
               <div key={f.key}>
                 <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">{f.label}</label>
@@ -535,35 +537,62 @@ export default function OrderPage() {
                   required={f.required} className={INPUT_CLASS} />
               </div>
             ))}
+            <div className="grid grid-cols-5 gap-2">
+              <div className="col-span-2">
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">City</label>
+                <input type="text" placeholder="Dallas" value={form.city}
+                  onChange={e => setForm(prev => ({ ...prev, city: e.target.value }))}
+                  required className={INPUT_CLASS} />
+              </div>
+              <div className="col-span-1">
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">State</label>
+                <input type="text" placeholder="TX" value={form.state}
+                  onChange={e => setForm(prev => ({ ...prev, state: e.target.value }))}
+                  required className={INPUT_CLASS} />
+              </div>
+              <div className="col-span-2">
+                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">ZIP</label>
+                <input type="text" placeholder="75201" value={form.zip}
+                  onChange={e => setForm(prev => ({ ...prev, zip: e.target.value }))}
+                  required className={INPUT_CLASS} />
+              </div>
+            </div>
           </div>
-          <div className="bg-white rounded-2xl shadow-sm p-4">
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Delivery date</label>
+          <div className="rounded-2xl p-4" style={{ border: '1px solid rgba(0,0,0,0.08)' }}>
+            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Delivery Date</label>
             <select value={form.delivery_date}
               onChange={e => setForm(prev => ({ ...prev, delivery_date: e.target.value }))}
               className={INPUT_CLASS}>
               {dates.map(d => <option key={d} value={d}>{formatDate(d)}</option>)}
             </select>
           </div>
-          <div className="bg-white rounded-2xl shadow-sm p-4">
-            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Payment method</label>
+          <div className="rounded-2xl p-4" style={{ border: '1px solid rgba(0,0,0,0.08)' }}>
+            <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">Payment Method</label>
             <div className="grid grid-cols-3 gap-2">
-              <button type="button" onClick={() => setForm(prev => ({ ...prev, payment_method: 'cashapp' }))}
-                className={`py-3 rounded-xl border-2 transition-all flex items-center justify-center ${form.payment_method === 'cashapp' ? 'border-black scale-95' : 'border-gray-200'}`}
-                style={{ backgroundColor: '#000' }}>
-                <span className="flex items-center gap-1">
-                  <span className="w-4 h-4 rounded-sm flex items-center justify-center text-xs font-black" style={{ backgroundColor: '#00D632', color: '#000' }}>$</span>
-                  <span className="text-white text-xs font-semibold">Cash App</span>
-                </span>
-              </button>
-              <button type="button" onClick={() => setForm(prev => ({ ...prev, payment_method: 'venmo' }))}
-                className={`py-3 rounded-xl border-2 transition-all flex items-center justify-center ${form.payment_method === 'venmo' ? 'border-blue-400 scale-95' : 'border-gray-200'}`}
-                style={{ backgroundColor: '#008CFF' }}>
-                <span className="text-white text-xs font-black italic">venmo</span>
-              </button>
-              <button type="button" onClick={() => setForm(prev => ({ ...prev, payment_method: 'in_person' }))}
-                className={`py-3 rounded-xl border-2 transition-all text-xs font-semibold ${form.payment_method === 'in_person' ? 'bg-amber-800 text-white border-amber-800' : 'bg-white text-gray-700 border-gray-200'}`}>
-                In Person
-              </button>
+              {[
+                { key: 'cashapp', label: 'Cash App', bg: '#000', content: (
+                  <span className="flex items-center gap-1">
+                    <span className="w-4 h-4 rounded-sm flex items-center justify-center text-xs font-black" style={{ backgroundColor: '#00D632', color: '#000' }}>$</span>
+                    <span className="text-white text-xs font-semibold">Cash App</span>
+                  </span>
+                )},
+                { key: 'venmo', label: 'Venmo', bg: '#008CFF', content: (
+                  <span className="text-white text-xs font-black italic">venmo</span>
+                )},
+                { key: 'in_person', label: 'In Person', bg: '#f5f5f0', content: (
+                  <span className="text-gray-700 text-xs font-semibold">In Person</span>
+                )},
+              ].map(opt => (
+                <button key={opt.key} type="button"
+                  onClick={() => setForm(prev => ({ ...prev, payment_method: opt.key }))}
+                  className="relative py-3 rounded-xl flex items-center justify-center transition-all"
+                  style={{ backgroundColor: opt.bg, outline: form.payment_method === opt.key ? '3px solid #7c4f2a' : '3px solid transparent', outlineOffset: '2px' }}>
+                  {opt.content}
+                  {form.payment_method === opt.key && (
+                    <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs" style={{ backgroundColor: '#7c4f2a' }}>✓</span>
+                  )}
+                </button>
+              ))}
             </div>
           </div>
           <div className="bg-white rounded-2xl shadow-sm p-4 space-y-2">
