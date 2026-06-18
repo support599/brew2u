@@ -352,12 +352,7 @@ export default function OrderPage() {
       {desktop}
       <main className="min-h-screen lg:hidden pb-24" style={{ backgroundColor: '#ffffff' }}>
         {/* Top bar */}
-        <div className="flex items-center justify-between px-5 pt-12 pb-2">
-          <button className="w-10 h-10 flex items-center justify-center">
-            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg>
-          </button>
+        <div className="flex items-center justify-end px-5 pt-12 pb-2">
           <button onClick={() => setMobileView('cart')} className="relative w-10 h-10 flex items-center justify-center">
             <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -368,10 +363,10 @@ export default function OrderPage() {
           </button>
         </div>
 
-        {/* Greeting */}
-        <div className="px-5 mb-5 mt-2">
-          <h1 className="text-2xl font-bold text-gray-900">Good {getTimeOfDay()}</h1>
-          <p className="text-gray-500 text-sm mt-0.5">It&apos;s time for cold brew ☕</p>
+        {/* Heading */}
+        <div className="px-5 mb-5 mt-1">
+          <h1 className="text-2xl font-bold text-gray-900 leading-tight">Fresh cold brew, delivered.</h1>
+          <p className="text-gray-500 text-sm mt-1">Order your favorite bottle in seconds.</p>
         </div>
 
         {/* Promo banner */}
@@ -416,29 +411,14 @@ export default function OrderPage() {
         </div>
 
         {/* Bottom nav */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-8 pt-3 pb-6 flex items-center justify-around z-20">
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 pt-3 pb-6 flex items-center justify-center z-20">
           <button className="flex flex-col items-center gap-1">
-            <svg className="w-6 h-6 text-amber-800" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-            </svg>
-            <span className="text-xs font-semibold text-amber-800">Home</span>
-          </button>
-          <button onClick={() => setMobileView('cart')} className="flex flex-col items-center gap-1 relative">
-            <div className="relative">
-              <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#7c4f2a' }}>
+              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
               </svg>
-              {cartCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 bg-amber-800 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center text-[10px]">{cartCount}</span>
-              )}
             </div>
-            <span className="text-xs text-gray-400">Cart</span>
-          </button>
-          <button className="flex flex-col items-center gap-1">
-            <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-            <span className="text-xs text-gray-400">Orders</span>
+            <span className="text-xs font-semibold" style={{ color: '#7c4f2a' }}>Home</span>
           </button>
         </div>
       </main>
