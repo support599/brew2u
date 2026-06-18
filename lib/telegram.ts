@@ -63,7 +63,7 @@ export function buildOrderMessage(order: {
 🛒 <b>Order:</b>
 ${itemLines}
 ─────────────
-<b>Total: $${order.total.toFixed(2)}</b>`
+<b>Total: $${parseFloat(String(order.total)).toFixed(2)}</b>`
 }
 
 export function buildConfirmKeyboard(orderId: number) {
