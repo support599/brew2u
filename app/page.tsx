@@ -351,12 +351,9 @@ export default function OrderPage() {
     <>
       {desktop}
       <main className="min-h-screen lg:hidden pb-24" style={{ backgroundColor: '#ffffff' }}>
-        {/* Header row */}
-        <div className="flex items-start px-5 pt-12 pb-5 gap-3">
-          <div className="flex-1">
-            <p className="text-base text-gray-700 font-normal leading-snug">FRESH COLD BREW, DELIVERED. ORDER YOUR FAVORITE BOTTLE IN SECONDS.</p>
-          </div>
-          <button onClick={() => setMobileView('cart')} className="relative flex-shrink-0 w-8 h-8 flex items-center justify-center mt-0.5">
+        {/* Top bar */}
+        <div className="flex items-center justify-end px-5 pt-12 pb-2">
+          <button onClick={() => setMobileView('cart')} className="relative w-10 h-10 flex items-center justify-center">
             <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
@@ -364,6 +361,12 @@ export default function OrderPage() {
               <span className="absolute -top-0.5 -right-0.5 bg-amber-800 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">{cartCount}</span>
             )}
           </button>
+        </div>
+
+        {/* Heading */}
+        <div className="px-5 mb-5 mt-1">
+          <h1 className="text-2xl font-bold text-gray-900 leading-tight">Fresh Cold Brew, Delivered.</h1>
+          <p className="text-gray-500 text-base mt-1">Order Your Favorite Bottle In Seconds.</p>
         </div>
 
         {/* Promo banner */}
