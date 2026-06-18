@@ -377,7 +377,7 @@ export default function OrderPage() {
               order now
             </button>
           </div>
-          <div className="absolute z-20" style={{ right: '-4px', top: '-24px', width: '160px', height: '200px', transform: 'rotate(15deg) translateX(-20px)' }}>
+          <div className="absolute z-20" style={{ right: '50%', transform: 'translateX(80%) rotate(15deg) translateY(-24px)', width: '160px', height: '200px' }}>
             <Image src="/splash.png" alt="Brew2u" fill className="object-contain" sizes="160px" />
           </div>
         </div>
@@ -424,10 +424,11 @@ export default function OrderPage() {
           </button>
           {cartCount > 0 && (
             <button onClick={() => setMobileView('cart')} className="flex flex-col items-center gap-1">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#1a0f07' }}>
+              <div className="relative w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#1a0f07' }}>
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
+                <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-amber-500 text-white text-[10px] font-bold flex items-center justify-center">{cartCount}</span>
               </div>
               <span className="text-xs font-semibold" style={{ color: '#1a0f07' }}>Go to Cart</span>
             </button>
