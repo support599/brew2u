@@ -261,17 +261,18 @@ export default function OrderPage() {
           </div>
           <div className="grid grid-cols-2 xl:grid-cols-4 gap-5">
             {menu.map((item, index) => (
-              <div key={item.id} className="bg-white rounded-2xl overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200" style={{ border: '1px solid rgba(0,0,0,0.08)' }}>
-                <div className="relative h-44 w-full bg-white">
+              <div key={item.id} className="rounded-2xl overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200" style={{ border: '1px solid rgba(0,0,0,0.08)', backgroundColor: '#fff' }}>
+                <div className="relative h-44 w-full" style={{ backgroundColor: '#f5f5f0' }}>
                   <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-4" sizes="(min-width:1280px) 25vw, 50vw" />
                 </div>
                 <div className="p-4">
                   <p className="font-bold text-gray-900 text-sm leading-tight">{item.name}</p>
                   <p className="text-gray-400 text-xs mt-1 line-clamp-2 leading-relaxed">{item.description}</p>
                   <div className="flex items-center justify-between mt-3">
-                    <span className="text-gray-900 font-bold">${parseFloat(String(item.price)).toFixed(2)}</span>
+                    <span className="text-gray-700 font-semibold">${parseFloat(String(item.price)).toFixed(2)}</span>
                     <button onClick={() => addToCart(item)}
-                      className="w-9 h-9 bg-amber-800 rounded-full flex items-center justify-center text-white font-bold text-xl active:scale-95 hover:bg-amber-700 transition-all shadow-sm">
+                      className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-xl active:scale-95 transition-all shadow-sm"
+                      style={{ backgroundColor: '#3a8c3f' }}>
                       +
                     </button>
                   </div>
@@ -376,7 +377,7 @@ export default function OrderPage() {
               order now
             </button>
           </div>
-          <div className="absolute right-0 top-0 h-full w-40 z-0">
+          <div className="absolute right-0 top-0 h-full w-40 z-0" style={{ transform: 'rotate(20deg) translateX(8px)' }}>
             <Image src="/splash.png" alt="Brew2u" fill className="object-contain object-right" sizes="160px" />
           </div>
         </div>
@@ -389,17 +390,17 @@ export default function OrderPage() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             {menu.map((item, index) => (
-              <div key={item.id} className="bg-white rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(0,0,0,0.08)' }}>
-                <div className="relative h-36 w-full bg-white">
-                  <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-3" sizes="50vw" />
+              <div key={item.id} className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(0,0,0,0.08)', backgroundColor: '#fff' }}>
+                <div className="relative h-36 w-full" style={{ backgroundColor: '#f5f5f0' }}>
+                  <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-4" sizes="50vw" />
                 </div>
                 <div className="p-3">
                   <p className="font-bold text-gray-900 text-sm leading-tight">{item.name}</p>
-                  <p className="text-gray-400 text-xs mt-0.5 line-clamp-1">{item.description}</p>
                   <div className="flex items-center justify-between mt-2">
-                    <span className="text-gray-900 font-bold text-sm">${parseFloat(String(item.price)).toFixed(2)}</span>
+                    <span className="text-gray-700 font-semibold text-sm">${parseFloat(String(item.price)).toFixed(2)}</span>
                     <button onClick={() => addToCart(item)}
-                      className="w-8 h-8 bg-amber-800 rounded-full flex items-center justify-center text-white font-bold text-xl active:scale-95 transition-transform shadow-sm">
+                      className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xl active:scale-95 transition-transform shadow-sm"
+                      style={{ backgroundColor: '#3a8c3f' }}>
                       +
                     </button>
                   </div>
