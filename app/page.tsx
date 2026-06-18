@@ -377,7 +377,7 @@ export default function OrderPage() {
               order now
             </button>
           </div>
-          <div className="absolute right-0 top-0 h-full w-40 z-0" style={{ transform: 'rotate(20deg) translateX(-28px) scale(1.3)' }}>
+          <div className="absolute right-0 top-0 h-full w-40 z-0" style={{ transform: 'rotate(20deg) translateX(-48px) scale(1.3)' }}>
             <Image src="/splash.png" alt="Brew2u" fill className="object-contain object-right" sizes="160px" />
           </div>
         </div>
@@ -413,8 +413,8 @@ export default function OrderPage() {
         </div>
 
         {/* Bottom nav */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 pt-3 pb-6 flex items-center justify-center z-20">
-          <button className="flex flex-col items-center gap-1">
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 pt-3 pb-6 flex items-center justify-center gap-4 z-20 px-6">
+          <button className="flex flex-col items-center gap-1 transition-all duration-300">
             <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: '#7c4f2a' }}>
               <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
@@ -422,6 +422,19 @@ export default function OrderPage() {
             </div>
             <span className="text-xs font-semibold" style={{ color: '#7c4f2a' }}>Home</span>
           </button>
+          {cartCount > 0 && (
+            <button onClick={() => setMobileView('cart')}
+              className="flex items-center gap-2 px-5 py-3 rounded-2xl text-white font-bold text-sm shadow-lg transition-all duration-300"
+              style={{ backgroundColor: '#1a0f07' }}>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              Go to Cart
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
         </div>
       </main>
     </>
