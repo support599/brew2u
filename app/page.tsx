@@ -393,7 +393,7 @@ export default function OrderPage() {
               <div key={item.id} className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(0,0,0,0.08)', backgroundColor: '#fff' }}>
                 <div className="p-3">
                   <div className="relative h-32 w-full rounded-xl" style={{ backgroundColor: '#f5f5f0' }}>
-                    <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-4" sizes="50vw" />
+                    <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-1" sizes="50vw" />
                   </div>
                 </div>
                 </div>
