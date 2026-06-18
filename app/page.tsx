@@ -272,7 +272,7 @@ export default function OrderPage() {
                     <span className="text-gray-700 font-semibold">${parseFloat(String(item.price)).toFixed(2)}</span>
                     <button onClick={() => addToCart(item)}
                       className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-xl active:scale-95 transition-all shadow-sm"
-                      style={{ backgroundColor: '#3a8c3f' }}>
+                      style={{ backgroundColor: '#7c4f2a' }}>
                       +
                     </button>
                   </div>
@@ -402,7 +402,7 @@ export default function OrderPage() {
                     <span className="text-gray-700 font-semibold text-sm">${parseFloat(String(item.price)).toFixed(2)}</span>
                     <button onClick={() => addToCart(item)}
                       className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xl active:scale-95 transition-transform shadow-sm"
-                      style={{ backgroundColor: '#3a8c3f' }}>
+                      style={{ backgroundColor: '#7c4f2a' }}>
                       +
                     </button>
                   </div>
@@ -441,32 +441,66 @@ export default function OrderPage() {
   if (mobileView === 'cart') return (
     <>
       {desktop}
-      <main className="min-h-screen lg:hidden" style={{ backgroundColor: '#ffffff' }}>
-        <div className="bg-white px-5 pt-12 pb-4 flex items-center gap-3 shadow-sm sticky top-0 z-10">
-          <button onClick={() => setMobileView('menu')} className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100">
+      <main className="min-h-screen lg:hidden pb-32" style={{ backgroundColor: '#ffffff' }}>
+        {/* Header */}
+        <div className="flex items-center justify-between px-5 pt-12 pb-4">
+          <button onClick={() => setMobileView('menu')} className="w-10 h-10 flex items-center justify-center rounded-full" style={{ backgroundColor: '#f5f5f0' }}>
             <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
           </button>
-          <h1 className="text-lg font-bold text-gray-900">Shopping Cart</h1>
+          <h1 className="text-lg font-bold text-gray-900">Your Cart</h1>
+          <div className="w-10" />
         </div>
-        <div className="px-4 py-4 pb-32 space-y-3">
-          {cart.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-20 text-center">
-              <p className="text-5xl mb-4">🛒</p>
-              <p className="text-gray-500 font-medium">Your cart is empty</p>
-              <button onClick={() => setMobileView('menu')} className="mt-4 text-amber-800 font-semibold underline">Browse menu</button>
+
+        {cart.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-32 text-center px-8">
+            <div className="w-20 h-20 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: '#f5f5f0' }}>
+              <svg className="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
             </div>
-          ) : (
-            <>
-              {cartItems}
-              {totalsBlock}
-            </>
-          )}
-        </div>
+            <p className="font-bold text-gray-900 text-lg">Nothing here yet</p>
+            <p className="text-gray-400 text-sm mt-1">Add a flavor to get started</p>
+            <button onClick={() => setMobileView('menu')} className="mt-5 px-6 py-2.5 rounded-full text-white text-sm font-bold" style={{ backgroundColor: '#7c4f2a' }}>Browse Menu</button>
+          </div>
+        ) : (
+          <div className="px-4 space-y-3">
+            {cart.map((item, idx) => (
+              <div key={item.id} className="flex items-center gap-3 rounded-2xl p-3" style={{ border: '1px solid rgba(0,0,0,0.08)' }}>
+                <div className="relative w-16 h-16 rounded-xl flex-shrink-0" style={{ backgroundColor: '#f5f5f0' }}>
+                  <Image src={getItemImage(idx)} alt={item.name} fill className="object-contain p-1 scale-110" sizes="64px" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-bold text-gray-900 text-sm">{item.name}</p>
+                  <p className="text-gray-400 text-xs mt-0.5">${parseFloat(String(item.price)).toFixed(2)} each</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button onClick={() => updateQty(item.id, -1)} className="w-7 h-7 rounded-full flex items-center justify-center text-white font-bold" style={{ backgroundColor: '#f5f5f0' }}>
+                    <span className="text-gray-700 text-sm">−</span>
+                  </button>
+                  <span className="w-5 text-center text-sm font-bold text-gray-900">{item.qty}</span>
+                  <button onClick={() => updateQty(item.id, 1)} className="w-7 h-7 rounded-full flex items-center justify-center text-white font-bold" style={{ backgroundColor: '#7c4f2a' }}>
+                    <span className="text-sm">+</span>
+                  </button>
+                </div>
+              </div>
+            ))}
+
+            {/* Totals */}
+            <div className="rounded-2xl p-4 space-y-2 mt-2" style={{ backgroundColor: '#f5f5f0' }}>
+              <div className="flex justify-between text-gray-500 text-sm"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
+              <div className="flex justify-between text-gray-500 text-sm"><span>Delivery fee</span><span>Free</span></div>
+              <div className="flex justify-between font-bold text-gray-900 pt-2 border-t border-gray-200"><span>Total</span><span>${total.toFixed(2)}</span></div>
+            </div>
+          </div>
+        )}
+
         {cart.length > 0 && (
           <div className="fixed bottom-6 left-4 right-4 z-20">
             <button onClick={() => setMobileView('checkout')}
-              className="w-full bg-amber-800 text-white py-4 rounded-2xl font-bold text-base shadow-lg">
-              Checkout · ${total.toFixed(2)}
+              className="w-full text-white py-4 rounded-2xl font-bold text-base shadow-lg flex items-center justify-between px-6"
+              style={{ backgroundColor: '#1a0f07' }}>
+              <span>Checkout</span>
+              <span>${total.toFixed(2)}</span>
             </button>
           </div>
         )}
