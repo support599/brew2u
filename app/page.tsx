@@ -15,8 +15,8 @@ interface CartItem extends MenuItem {
   qty: number
 }
 
-function getItemImage(index: number) {
-  return index % 2 === 0 ? '/coffee1.jpg' : '/coffee2.jpg'
+function getItemImage(_index: number) {
+  return '/bottle.png'
 }
 
 function getTimeOfDay() {
