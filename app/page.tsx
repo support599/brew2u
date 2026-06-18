@@ -221,61 +221,83 @@ export default function OrderPage() {
 
   // ── DESKTOP ───────────────────────────────────────────────────────────────
   const desktop = (
-    <div className="hidden lg:flex min-h-screen">
-      {/* Sidebar */}
-      <div className="w-56 bg-amber-900 flex flex-col flex-shrink-0 sticky top-0 h-screen">
-        <div className="p-5 pb-4">
-          <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 bg-white/10 rounded-xl flex items-center justify-center text-lg">☕</div>
-            <div>
-              <h1 className="text-white text-xl font-black tracking-tight leading-none">brew<span className="text-amber-300">2u</span></h1>
-              <p className="text-amber-400/70 text-xs mt-0.5">Cold brew · Delivered</p>
-            </div>
+    <div className="hidden lg:flex min-h-screen" style={{ backgroundColor: '#f7f3ee' }}>
+      {/* Main content */}
+      <div className="flex-1 overflow-y-auto flex flex-col">
+        {/* Top bar */}
+        <div className="flex items-center justify-between px-10 pt-8 pb-4">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Good {getTimeOfDay()}</h1>
+            <p className="text-gray-500 text-sm mt-0.5">It&apos;s time for cold brew ☕</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+              <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+              </svg>
+            </button>
           </div>
         </div>
-        <div className="mx-4 border-t border-amber-800/60" />
-        <nav className="px-3 mt-3 space-y-1 flex-1">
-          <div className="flex items-center gap-3 px-3 py-3 rounded-xl bg-white/10 text-white font-semibold text-sm cursor-default">
-            <svg className="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-            Menu
+
+        {/* Promo banner */}
+        <div className="mx-10 mb-8 rounded-3xl overflow-hidden relative h-44" style={{ backgroundColor: '#5c3d1e' }}>
+          <div className="absolute inset-0 z-10 flex flex-col justify-center pl-10 pr-80">
+            <p className="text-white font-bold text-2xl leading-snug">Fresh Cold Brew<br/>Delivered to You</p>
+            <p className="text-amber-200 text-sm mt-1">Order today, delivered in 2 days</p>
+            <button className="mt-3 bg-white text-amber-900 text-sm font-bold px-6 py-2 rounded-full w-fit hover:bg-amber-50 transition-colors">
+              order now
+            </button>
           </div>
-        </nav>
-        <div className="p-4 border-t border-amber-800/60 space-y-2">
-          <a href="tel:9033789795" className="flex items-center gap-2 text-amber-300 hover:text-white text-xs font-medium transition-colors">
-            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-            903-378-9795
-          </a>
-          <a href="https://facebook.com/Brew2u" target="_blank" className="flex items-center gap-2 text-amber-400 hover:text-white text-xs font-medium transition-colors">
-            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" /></svg>
-            facebook.com/Brew2u
-          </a>
+          <div className="absolute right-0 top-0 h-full w-80 z-0">
+            <Image src="/banner.png" alt="Brew2u" fill className="object-cover object-left" sizes="320px" />
+          </div>
+        </div>
+
+        {/* Products grid */}
+        <div className="px-10 pb-10">
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="text-xl font-bold text-gray-900">Our Flavors</h2>
+            <span className="text-sm text-gray-400 font-medium">{menu.length} items · 12oz bottles</span>
+          </div>
+          <div className="grid grid-cols-2 xl:grid-cols-4 gap-5">
+            {menu.map((item, index) => (
+              <div key={item.id} className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
+                <div className="relative h-44 w-full" style={{ backgroundColor: '#f5f0e8' }}>
+                  <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-4" sizes="(min-width:1280px) 25vw, 50vw" />
+                </div>
+                <div className="p-4">
+                  <p className="font-bold text-gray-900 text-sm leading-tight">{item.name}</p>
+                  <p className="text-gray-400 text-xs mt-1 line-clamp-2 leading-relaxed">{item.description}</p>
+                  <div className="flex items-center justify-between mt-3">
+                    <span className="text-gray-900 font-bold">${parseFloat(String(item.price)).toFixed(2)}</span>
+                    <button onClick={() => addToCart(item)}
+                      className="w-9 h-9 bg-amber-800 rounded-full flex items-center justify-center text-white font-bold text-xl active:scale-95 hover:bg-amber-700 transition-all shadow-sm">
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Main */}
-      <div className="flex-1 overflow-y-auto bg-gray-50">{menuGrid}</div>
-
-      {/* Cart sidebar */}
-      <div className="w-80 bg-white border-l border-gray-100 flex flex-col sticky top-0 h-screen flex-shrink-0">
-        <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5 text-amber-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            <h2 className="font-bold text-gray-900">Your Cart</h2>
+      {/* Cart panel */}
+      <div className="w-96 bg-white flex flex-col sticky top-0 h-screen flex-shrink-0 shadow-xl">
+        <div className="px-6 pt-8 pb-4 border-b border-gray-100">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-bold text-gray-900">Your Cart</h2>
+            {cartCount > 0 && <span className="bg-amber-800 text-white text-xs font-bold px-3 py-1 rounded-full">{cartCount} item{cartCount !== 1 ? 's' : ''}</span>}
           </div>
-          {cartCount > 0 && <span className="bg-amber-800 text-white text-xs font-bold px-2.5 py-1 rounded-full">{cartCount} item{cartCount !== 1 ? 's' : ''}</span>}
         </div>
-        <div className="flex-1 overflow-y-auto p-4 space-y-3">
+        <div className="flex-1 overflow-y-auto p-5 space-y-3">
           {cart.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full py-16 text-center px-4">
-              <div className="relative w-28 h-28 mb-4 opacity-80">
-                <Image src="/coffee1.jpg" alt="Cold brew" fill className="object-contain" sizes="112px" />
+              <div className="relative w-24 h-24 mb-4 opacity-60">
+                <Image src="/coffee1.jpg" alt="Cold brew" fill className="object-contain" sizes="96px" />
               </div>
-              <p className="text-gray-800 font-bold text-base">Nothing here yet</p>
-              <p className="text-gray-400 text-sm mt-1.5 leading-relaxed">Pick a flavor from the menu<br />and we'll deliver it fresh ☕</p>
+              <p className="text-gray-800 font-bold">Nothing here yet</p>
+              <p className="text-gray-400 text-sm mt-1.5 leading-relaxed">Pick a flavor and we&apos;ll deliver it fresh ☕</p>
             </div>
           ) : (
             <>
