@@ -392,7 +392,7 @@ export default function OrderPage() {
             {menu.map((item, index) => (
               <div key={item.id} className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(0,0,0,0.08)', backgroundColor: '#fff' }}>
                 <div className="relative h-36 w-full" style={{ backgroundColor: '#f5f5f0' }}>
-                  <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-4" sizes="50vw" />
+                  <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-8" sizes="50vw" />
                 </div>
                 <div className="p-3">
                   <p className="font-bold text-gray-900 text-sm leading-tight">{item.name}</p>
