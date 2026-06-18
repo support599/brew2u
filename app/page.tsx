@@ -372,12 +372,12 @@ export default function OrderPage() {
         {/* Promo banner */}
         <div className="mx-5 mb-6 rounded-3xl overflow-hidden relative h-36" style={{ backgroundColor: '#1a0f07' }}>
           <div className="absolute inset-0 z-10 flex flex-col justify-center pl-5 pr-36">
-            <p className="text-white font-bold text-lg leading-snug">Fresh Cold Brew<br/>Delivered to You</p>
+            <p className="text-white font-bold text-lg leading-snug">Cold Brew,<br/>One Tap Away</p>
             <button onClick={() => {}} className="mt-2 bg-white text-amber-900 text-xs font-bold px-4 py-1.5 rounded-full w-fit">
               order now
             </button>
           </div>
-          <div className="absolute right-0 top-0 h-full w-40 z-0" style={{ transform: 'rotate(20deg) translateX(-12px) scale(1.3)' }}>
+          <div className="absolute right-0 top-0 h-full w-40 z-0" style={{ transform: 'rotate(20deg) translateX(-28px) scale(1.3)' }}>
             <Image src="/splash.png" alt="Brew2u" fill className="object-contain object-right" sizes="160px" />
           </div>
         </div>
