@@ -19,6 +19,13 @@ function getItemImage(index: number) {
   return index % 2 === 0 ? '/coffee1.jpg' : '/coffee2.jpg'
 }
 
+function getTimeOfDay() {
+  const h = new Date().getHours()
+  if (h < 12) return 'Morning'
+  if (h < 17) return 'Afternoon'
+  return 'Evening'
+}
+
 function getNextWeekdays(minDays: number): string[] {
   const dates: string[] = []
   const today = new Date()
@@ -321,27 +328,97 @@ export default function OrderPage() {
   if (mobileView === 'menu') return (
     <>
       {desktop}
-      <main className="min-h-screen bg-gray-50 relative lg:hidden">
-        <div className="absolute top-4 right-4 z-20">
-          <button onClick={() => setMobileView('cart')}
-            className="relative w-11 h-11 flex items-center justify-center rounded-full bg-white shadow-md">
-            <svg className="w-6 h-6 text-amber-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+      <main className="min-h-screen lg:hidden pb-24" style={{ backgroundColor: '#f7f3ee' }}>
+        {/* Top bar */}
+        <div className="flex items-center justify-between px-5 pt-12 pb-2">
+          <button className="w-10 h-10 flex items-center justify-center">
+            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
-            {cartCount > 0 && <span className="absolute -top-1 -right-1 bg-amber-800 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">{cartCount}</span>}
+          </button>
+          <button onClick={() => setMobileView('cart')} className="relative w-10 h-10 flex items-center justify-center">
+            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            {cartCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 bg-amber-800 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">{cartCount}</span>
+            )}
           </button>
         </div>
-        {menuGrid}
-        {cartCount > 0 && (
-          <div className="fixed bottom-6 left-4 right-4 z-20">
-            <button onClick={() => setMobileView('cart')}
-              className="w-full bg-amber-800 text-white py-4 rounded-2xl font-bold text-base shadow-lg flex items-center justify-between px-5">
-              <span className="bg-amber-700 text-sm font-bold px-2 py-0.5 rounded-lg">{cartCount}</span>
-              <span>View Cart</span>
-              <span>${subtotal.toFixed(2)}</span>
+
+        {/* Greeting */}
+        <div className="px-5 mb-5 mt-2">
+          <h1 className="text-2xl font-bold text-gray-900">Good {getTimeOfDay()}</h1>
+          <p className="text-gray-500 text-sm mt-0.5">It&apos;s time for cold brew ☕</p>
+        </div>
+
+        {/* Promo banner */}
+        <div className="mx-5 mb-6 rounded-3xl overflow-hidden relative h-36" style={{ backgroundColor: '#5c3d1e' }}>
+          <div className="absolute inset-0 z-10 flex flex-col justify-center pl-5 pr-40">
+            <p className="text-white font-bold text-lg leading-snug">Fresh Cold Brew<br/>Delivered to You</p>
+            <button onClick={() => {}} className="mt-2 bg-white text-amber-900 text-xs font-bold px-4 py-1.5 rounded-full w-fit">
+              order now
             </button>
           </div>
-        )}
+          <div className="absolute right-0 top-0 h-full w-44 z-0">
+            <Image src="/banner.png" alt="Brew2u" fill className="object-cover object-left" sizes="176px" />
+          </div>
+        </div>
+
+        {/* Products */}
+        <div className="px-4">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold text-gray-900">Our Flavors</h2>
+            <span className="text-xs text-gray-400 font-medium">{menu.length} items · 12oz</span>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {menu.map((item, index) => (
+              <div key={item.id} className="bg-white rounded-2xl shadow-sm overflow-hidden">
+                <div className="relative h-36 w-full" style={{ backgroundColor: '#f5f0e8' }}>
+                  <Image src={getItemImage(index)} alt={item.name} fill className="object-contain p-3" sizes="50vw" />
+                </div>
+                <div className="p-3">
+                  <p className="font-bold text-gray-900 text-sm leading-tight">{item.name}</p>
+                  <p className="text-gray-400 text-xs mt-0.5 line-clamp-1">{item.description}</p>
+                  <div className="flex items-center justify-between mt-2">
+                    <span className="text-gray-900 font-bold text-sm">${parseFloat(String(item.price)).toFixed(2)}</span>
+                    <button onClick={() => addToCart(item)}
+                      className="w-8 h-8 bg-amber-800 rounded-full flex items-center justify-center text-white font-bold text-xl active:scale-95 transition-transform shadow-sm">
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom nav */}
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 px-8 pt-3 pb-6 flex items-center justify-around z-20">
+          <button className="flex flex-col items-center gap-1">
+            <svg className="w-6 h-6 text-amber-800" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+            </svg>
+            <span className="text-xs font-semibold text-amber-800">Home</span>
+          </button>
+          <button onClick={() => setMobileView('cart')} className="flex flex-col items-center gap-1 relative">
+            <div className="relative">
+              <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-amber-800 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center text-[10px]">{cartCount}</span>
+              )}
+            </div>
+            <span className="text-xs text-gray-400">Cart</span>
+          </button>
+          <button className="flex flex-col items-center gap-1">
+            <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+            <span className="text-xs text-gray-400">Orders</span>
+          </button>
+        </div>
       </main>
     </>
   )
@@ -349,7 +426,7 @@ export default function OrderPage() {
   if (mobileView === 'cart') return (
     <>
       {desktop}
-      <main className="min-h-screen bg-gray-50 lg:hidden">
+      <main className="min-h-screen lg:hidden" style={{ backgroundColor: '#f7f3ee' }}>
         <div className="bg-white px-5 pt-12 pb-4 flex items-center gap-3 shadow-sm sticky top-0 z-10">
           <button onClick={() => setMobileView('menu')} className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100">
             <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
@@ -386,7 +463,7 @@ export default function OrderPage() {
   return (
     <>
       {desktop}
-      <main className="min-h-screen bg-gray-50 lg:hidden">
+      <main className="min-h-screen lg:hidden" style={{ backgroundColor: '#f7f3ee' }}>
         <div className="bg-white px-5 pt-12 pb-4 flex items-center gap-3 shadow-sm sticky top-0 z-10">
           <button onClick={() => setMobileView('cart')} className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100">
             <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
